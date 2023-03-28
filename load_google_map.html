@@ -1,4 +1,4 @@
-<!DOCTYPE HTML5>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -50,7 +50,7 @@
 
         function initMap() {
             map = new google.maps.Map(document.getElementById("map"), {
-                center: { lat: 23.250309,  lng: 77.413987 },
+                center: { lat: 23.250309, lng: 77.413987 },
                 zoom: 6,
             });
             infoWindow = new google.maps.InfoWindow();
@@ -70,10 +70,16 @@
                                 lng: position.coords.longitude,
                             };
 
-                            infoWindow.setPosition(pos);
-                            infoWindow.setContent("Location found.");
-                            infoWindow.open(map);
+                            // infoWindow.setPosition(pos);
+                            // infoWindow.setContent("Location found.");
+                            // infoWindow.open(map);
                             map.setCenter(pos);
+                            // const myLatLng = pos;
+                            new google.maps.Marker({
+                                position: pos,
+                                map,
+                                title: "Hello World!",
+                            });
                         },
                         () => {
                             handleLocationError(true, infoWindow, map.getCenter());
@@ -84,6 +90,9 @@
                     handleLocationError(false, infoWindow, map.getCenter());
                 }
             });
+
+
+            window.initMap = initMap;
         }
 
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
