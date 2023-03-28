@@ -47,7 +47,7 @@
         // locate you.
         let map, infoWindow;
 
-        function myMap() {
+        function initMap() {
             map = new google.maps.Map(document.getElementById("map"), {
                 center: { lat: -34.397, lng: 150.644 },
                 zoom: 6,
@@ -98,7 +98,7 @@
         window.initMap = initMap;
     </script>
     <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">    </script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=initMap">    </script>
 </body>
 
 </html>
