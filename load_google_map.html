@@ -11,7 +11,7 @@
 <style>
     #map {
         margin-top: 50px;
-        height: 95vh;
+        height: 80vh;
         width: 100%;
         border: 2px solid black;
     }
@@ -63,14 +63,14 @@
             locationButton.addEventListener("click", () => {
                 // Try HTML5 geolocation.
                 if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(
+                    navigator.geolocation.watchPosition(
                         (position) => {
                             const pos = {
                                 lat: position.coords.latitude,
                                 lng: position.coords.longitude,
                             };
-                            
-                            document.getElementById("coordinates").innerHTML = "let : " + pos.lat + "<br> lng : " + pos.lng; 
+
+                            document.getElementById("coordinates").innerHTML = "let : " + pos.lat + "<br> lng : " + pos.lng;
                             // infoWindow.setPosition(pos);
                             // infoWindow.setContent("Location found.");
                             // infoWindow.open(map);
@@ -81,6 +81,19 @@
                                 map,
                                 title: "Hello World!",
                             });
+
+                            setInterval(() => {
+                                let pos2 = pos;
+                                pos2.lat += 1;
+                                pos2.lng += 1;
+                                new google.maps.Marker({
+                                    position: pos2,
+                                    map,
+                                    title: "Hello World!",
+                                });
+                            }, 500);
+
+
                         },
                         () => {
                             handleLocationError(true, infoWindow, map.getCenter());
@@ -105,11 +118,16 @@
             );
             infoWindow.open(map);
         }
+        function initMap2() {
+            setInterval(initMap, 2000);
+        }
 
         window.initMap = initMap;
     </script>
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=initMap">    </script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=initMap">
+    </script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBO5nudb4jZzYTIkyZM_H6bjEklWDio5FQ&callback=initMap">
+    </script>
 </body>
 
 </html>
